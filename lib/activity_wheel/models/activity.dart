@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Activity {
   const Activity(this.name, this.weight);
 
@@ -22,7 +24,10 @@ class Activity {
     for (final assetPath in assetMap.keys) {
       final keywords = assetMap[assetPath] ?? {};
       if (keywords.contains(name)) {
-        return assetPath;
+        if (kDebugMode) {
+          return assetPath;
+        }
+        return 'assets/$assetPath';
       }
     }
 
