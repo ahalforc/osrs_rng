@@ -19,6 +19,7 @@ class Activity {
       'osrs_wardens.webp': {'toa', 'tombs', 'amascut', 'warden'},
       'osrs_wintertodt.png': {'wt', 'wintertodt'},
       'osrs_zalcano.webp': {'zalcano'},
+      'osrs_nex.webp': {'nex'},
     };
 
     for (final assetPath in assetMap.keys) {
