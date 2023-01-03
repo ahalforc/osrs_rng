@@ -1,16 +1,11 @@
 # osrs_rng
 
-A new Flutter project.
+A simple flutter-for-web project for doing random things for Old School RuneScape.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To use the web-version of this app, visit: todo
 
-A few resources to get you started if this is your first Flutter project:
+## Contributing
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+todo
