@@ -30,6 +30,7 @@ class _ActivityWheelPageState extends State<ActivityWheelPage> {
               )
             : ActivityWheel(
                 activities: _activities,
+                onLeave: () => setState(() => _showForm = true),
               ),
       ),
     );

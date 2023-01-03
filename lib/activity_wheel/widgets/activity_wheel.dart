@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:osrs_rng/activity_wheel/activity_wheel.dart';
 
 class ActivityWheel extends StatefulWidget {
-  const ActivityWheel({super.key, required this.activities});
+  const ActivityWheel({
+    super.key,
+    required this.activities,
+    required this.onLeave,
+  });
 
   final List<Activity> activities;
+  final void Function() onLeave;
 
   @override
   State<ActivityWheel> createState() => _ActivityWheelState();
@@ -19,6 +24,7 @@ class _ActivityWheelState extends State<ActivityWheel> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() => _rollTarget = Random().nextDouble() * 2 * pi),
+      onLongPress: widget.onLeave,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final diameter =
@@ -67,13 +73,19 @@ class _SpinnerState extends State<_Spinner>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
     _animation = CurvedAnimation(
       parent: _controller,
       curve: Curves.elasticOut,
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,8 +99,6 @@ class _SpinnerState extends State<_Spinner>
 
   @override
   Widget build(BuildContext context) {
-    const spins = 5;
-
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, _) {
@@ -170,7 +180,10 @@ class _Slice extends StatelessWidget {
                 radius / 2 * sin(offsetRadians + radians / 2),
               ),
             child: assetPath == null
-                ? Text(activity.name)
+                ? Text(
+                    activity.name,
+                    style: Theme.of(context).textTheme.displayMedium,
+                  )
                 : Image.asset(
                     assetPath,
                     width: radius,

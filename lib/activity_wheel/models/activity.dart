@@ -12,7 +12,7 @@ class Activity {
     const assetMap = {
       'osrs_nightmare.webp': {'nm', 'nightmare', 'phosani', 'pnm'},
       'osrs_olm.webp': {'cox', 'chambers', 'olm', 'cms'},
-      'osrs_tempoross.webp': {'temp', 'tempoross'},
+      'osrs_tempoross.webp': {'tempoross'},
       'osrs_verzik.webp': {'tob', 'theater', 'theatre', 'verzik'},
       'osrs_wardens.webp': {'toa', 'tombs', 'amascut', 'warden'},
       'osrs_wintertodt.png': {'wt', 'wintertodt'},
