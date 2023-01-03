@@ -8,4 +8,6 @@ To use the web-version of this app, visit: todo
 
 ## Contributing
 
-todo
+This is still in its infancy.
+
+To further expand on this, we'll need to add GoRouter with a NavigationRail to paginate between the tools.
