@@ -23,7 +23,7 @@ class Activity {
 
     for (final assetPath in assetMap.keys) {
       final keywords = assetMap[assetPath] ?? {};
-      if (keywords.contains(name)) {
+      if (keywords.contains(name.toLowerCase())) {
         if (kDebugMode) {
           return assetPath;
         }
