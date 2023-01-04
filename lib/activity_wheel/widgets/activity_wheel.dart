@@ -109,6 +109,8 @@ class _SpinnerState extends State<_Spinner>
   Widget build(BuildContext context) {
     const spins = 10;
 
+    final length = widget.radius * 0.5;
+
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, _) {
@@ -119,11 +121,18 @@ class _SpinnerState extends State<_Spinner>
               end: (spins * 2 * pi) + widget.angle,
             ).evaluate(_animation),
             child: Transform.translate(
-              offset: Offset(widget.radius * 0.75 / 2, 0),
+              offset: Offset(
+                length / 2,
+                -length / 2,
+              ),
+              // offset: Offset.zero,
               child: Container(
-                width: widget.radius * 0.75,
-                height: 6,
-                color: Theme.of(context).colorScheme.onPrimary,
+                alignment: Alignment.bottomLeft,
+                width: length,
+                height: length,
+                child: Image.asset(
+                  'assets/osrs_dragon_scimitar.webp',
+                ),
               ),
             ),
           ),
@@ -175,7 +184,7 @@ class _Slice extends StatelessWidget {
       foregroundPainter: _SliceBorderPainter(
         startRadians: offsetRadians,
         endRadians: offsetRadians + radians,
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       child: ClipPath(
         clipper: _SliceClipper(
@@ -260,7 +269,7 @@ class _SliceBorderPainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeJoin = StrokeJoin.round
         ..strokeCap = StrokeCap.round
-        ..strokeWidth = 4
+        ..strokeWidth = 10
         ..color = color,
     );
   }

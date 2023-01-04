@@ -14,13 +14,10 @@ To further expand on this, we'll need to add GoRouter with a NavigationRail to p
 
 ### Building
 
-To build the deployment code, run the following
+To build the deployment code, run the following in the root directory
 
 ```
-flutter build web
-rm -r app/
-mkdir app/
-cp -R build/web/ app/
+make build-web
 ```
 
 then update the base href to
