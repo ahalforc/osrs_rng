@@ -24,7 +24,6 @@ class _ActivityWheelState extends State<ActivityWheel> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() => _rollTarget = Random().nextDouble() * 2 * pi),
-      onLongPress: widget.onLeave,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final diameter =
@@ -45,6 +44,13 @@ class _ActivityWheelState extends State<ActivityWheel> {
                 _Spinner(
                   radius: diameter / 2,
                   angle: _rollTarget,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: ElevatedButton(
+                    onPressed: widget.onLeave,
+                    child: const Text('No wait go back'),
+                  ),
                 ),
               ],
             ),
@@ -67,18 +73,19 @@ class _Spinner extends StatefulWidget {
 class _SpinnerState extends State<_Spinner>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation _animation;
+  late final Animation<double> _animation;
+  var _lastAngle = 0.0;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: Curves.elasticOut,
+      curve: Curves.easeOut,
     );
   }
 
@@ -91,6 +98,7 @@ class _SpinnerState extends State<_Spinner>
   @override
   void didUpdateWidget(covariant _Spinner oldWidget) {
     super.didUpdateWidget(oldWidget);
+    _lastAngle = oldWidget.angle;
     _controller.reset();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.forward();
@@ -99,18 +107,23 @@ class _SpinnerState extends State<_Spinner>
 
   @override
   Widget build(BuildContext context) {
+    const spins = 10;
+
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, _) {
         return Center(
           child: Transform.rotate(
-            angle: widget.angle * _animation.value,
+            angle: Tween(
+              begin: _lastAngle,
+              end: (spins * 2 * pi) + widget.angle,
+            ).evaluate(_animation),
             child: Transform.translate(
               offset: Offset(widget.radius * 0.75 / 2, 0),
               child: Container(
                 width: widget.radius * 0.75,
-                height: 10,
-                color: Theme.of(context).colorScheme.primary,
+                height: 6,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -162,7 +175,7 @@ class _Slice extends StatelessWidget {
       foregroundPainter: _SliceBorderPainter(
         startRadians: offsetRadians,
         endRadians: offsetRadians + radians,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.background,
       ),
       child: ClipPath(
         clipper: _SliceClipper(

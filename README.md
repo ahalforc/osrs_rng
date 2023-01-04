@@ -11,3 +11,14 @@ To use the web-version of this app, visit: todo
 This is still in its infancy.
 
 To further expand on this, we'll need to add GoRouter with a NavigationRail to paginate between the tools.
+
+### Building
+
+To build the deployment code, run the following
+
+```
+flutter build web
+rm -r app/
+mkdir app/
+cp -R build/web/ app/
+```
