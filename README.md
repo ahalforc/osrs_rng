@@ -22,3 +22,9 @@ rm -r app/
 mkdir app/
 cp -R build/web/ app/
 ```
+
+then update the base href to
+
+```html
+<base href="/osrs_rng/app/">
+```
