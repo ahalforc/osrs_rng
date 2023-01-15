@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:osrs_rng/activity_wheel/activity_wheel.dart';
+import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
 
-class ActivityWheelPage extends StatefulWidget {
-  const ActivityWheelPage({super.key});
+class ActivityRandomizerPage extends StatefulWidget {
+  const ActivityRandomizerPage({super.key});
 
   @override
-  State<ActivityWheelPage> createState() => _ActivityWheelPageState();
+  State<ActivityRandomizerPage> createState() => _ActivityRandomizerPageState();
 }
 
-class _ActivityWheelPageState extends State<ActivityWheelPage> {
+class _ActivityRandomizerPageState extends State<ActivityRandomizerPage> {
   final _activities = <Activity>[];
   var _showForm = true;
 
@@ -39,7 +39,7 @@ class _ActivityWheelPageState extends State<ActivityWheelPage> {
                     });
                   },
                 )
-              : ActivityWheel(
+              : ActivityRandomizer(
                   activities: _activities,
                   onLeave: () => setState(() => _showForm = true),
                 ),

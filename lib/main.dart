@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:osrs_rng/activity_wheel/activity_wheel.dart';
+import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'osrs rng',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.yellow,
+        colorSchemeSeed: Colors.blue,
         brightness: Brightness.dark,
       ),
-      home: const ActivityWheelPage(),
+      home: const ActivityRandomizerPage(),
     );
   }
 }
