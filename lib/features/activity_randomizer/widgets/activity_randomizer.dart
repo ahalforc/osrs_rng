@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
+import 'package:osrs_rng/features/activity_randomizer/activity_randomizer.dart';
 
 class ActivityRandomizer extends StatefulWidget {
   const ActivityRandomizer({

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
+import 'package:osrs_rng/features/activity_randomizer/activity_randomizer.dart';
 
 class ActivityList extends StatelessWidget {
   const ActivityList({
     super.key,
     required this.activities,
+    required this.isReadOnly,
     required this.onRemove,
   });
 
   final List<Activity> activities;
+  final bool isReadOnly;
   final void Function(Activity) onRemove;
 
   @override
@@ -27,6 +29,7 @@ class ActivityList extends StatelessWidget {
           for (final activity in activities)
             ActivityListTile(
               activity: activity,
+              isEnabled: !isReadOnly,
               onRemove: () => onRemove(activity),
             ),
         ],
@@ -39,10 +42,12 @@ class ActivityListTile extends StatelessWidget {
   const ActivityListTile({
     super.key,
     required this.activity,
+    required this.isEnabled,
     required this.onRemove,
   });
 
   final Activity activity;
+  final bool isEnabled;
   final void Function() onRemove;
 
   @override
@@ -51,7 +56,7 @@ class ActivityListTile extends StatelessWidget {
       title: Text(activity.name),
       subtitle: Text('Weight: ${activity.weight}'),
       trailing: IconButton(
-        onPressed: onRemove,
+        onPressed: isEnabled ? onRemove : null,
         icon: const Icon(Icons.remove),
       ),
     );

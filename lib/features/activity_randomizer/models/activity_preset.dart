@@ -1,4 +1,4 @@
-import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
+import 'package:osrs_rng/features/activity_randomizer/activity_randomizer.dart';
 
 enum ActivityPreset {
   skills,

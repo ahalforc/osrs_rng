@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:osrs_rng/activity_randomizer/activity_randomizer.dart';
+import 'package:osrs_rng/features/activity_randomizer/activity_randomizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ActivityForm extends StatefulWidget {
@@ -45,6 +45,7 @@ class _ActivityFormState extends State<ActivityForm> {
                 const SizedBox(height: 16),
                 ActivityList(
                   activities: _activities,
+                  isReadOnly: _preset != ActivityPreset.custom,
                   onRemove: _onRemove,
                 ),
                 const SizedBox(height: 16),
@@ -94,6 +95,9 @@ class _ActivityFormState extends State<ActivityForm> {
         ..clear()
         ..addAll(preset.activities);
     });
+    if (preset == ActivityPreset.custom) {
+      _load();
+    }
   }
 
   void _onAdd(Activity activity) {
